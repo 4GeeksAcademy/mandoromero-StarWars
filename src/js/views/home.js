@@ -1,15 +1,40 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useDtate, useEffect } from "react";
 import "../../styles/home.css";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+
+ function Home() {
+
+	const [people, setPeople] = useStat([]);
+	const [ships, setShips] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+useEffect => {
+	async function fetchPeople() {
+		let res = await fetch('https://swapi.dev/api/people/?format=jason/');
+		let data = await res.json();
+		setPeople(data.results);
+	}
+
+	async function fetchSpaceShips() {
+		let res = await fetch('https://swapi.dev/api/spaceships/?format=json/');
+		let data = await res.jason();
+		setSpaceShips(data.results);	
+	}
+
+	fetchPeople();
+	fetchSpaceShips();
+
+}, []}
+
+console.log('data', people);
+console.log('data', spaceShips);
+
+	return(
+
+	<div className="container">
+			Hello World
 	</div>
-);
+		
+	);
+
+	export default Home;
